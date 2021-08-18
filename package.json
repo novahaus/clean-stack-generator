@@ -11,6 +11,7 @@
   "author": "Leandro C. Silva",
   "license": "MIT",
   "dependencies": {
+    "@types/yeoman-generator": "^5.2.2",
     "yeoman-generator": "^5.4.1"
   }
 }

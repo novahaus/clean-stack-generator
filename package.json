@@ -5,7 +5,12 @@
   "files": [
     "generators"
   ],
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "author": "Leandro C. Silva",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "yeoman-generator": "^5.4.1"
+  }
 }

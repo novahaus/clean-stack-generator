@@ -1,0 +1,11 @@
+{
+  "name": "generator-clean-react",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": ["yeoman-generator"],
+  "author": "Leandro C. Silva",
+  "license": "MIT"
+}

@@ -7,7 +7,7 @@ module.exports = class extends Generator {
   }
 
   initializing() {
-    // this.composeWith(require.resolve('../core'));
+    this.composeWith(require.resolve('../core'));
     // this.composeWith(require.resolve('../presentation'));
 
     this._logStart();

@@ -1,0 +1,25 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --passWithNoTests --no-cache --runInBand --bail",
+    "test:watch": "npm test -- --watch",
+    "lint": "eslint source --fix",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "cypress:open": "cypresse open"
+  },
+  "author": "<%= author %>",
+  "license": "ISC",
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --fix --quiet",
+    "*.{ts,tsx,js,jsx,css,md}": "prettier --write",
+    "*.{spec,test}.{ts,tsx,js,jsx}": "npm run test"
+  },
+  "config": {
+    "sourcepath": "./source",
+    "nextpath": "./source/presentation"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules
+coverage
+cypress
+.next
+/*.js
+next-env.d.ts
+source/presentation/public
+dist

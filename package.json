@@ -1,17 +1,27 @@
 {
-  "name": "generator-clean-react",
+  "name": "generator-mate",
   "version": "0.1.0",
   "description": "",
   "files": [
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "mate",
+    "stack",
+    "typescript",
+    "react",
+    "clean-architecture"
   ],
   "author": "Leandro C. Silva",
   "license": "MIT",
   "dependencies": {
-    "@types/yeoman-generator": "^5.2.2",
+    "boxen": "^5.0.1",
+    "chalk": "4.1.0",
     "yeoman-generator": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.19",
+    "@types/yeoman-generator": "^5.2.2"
   }
 }

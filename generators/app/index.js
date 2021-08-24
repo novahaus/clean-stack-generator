@@ -8,6 +8,7 @@ module.exports = class extends Generator {
 
   initializing() {
     this.composeWith(require.resolve('../core'));
+    this.composeWith(require.resolve('../domain'));
     this.composeWith(require.resolve('../presentation'));
 
     this._logStart();
@@ -48,6 +49,12 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('.editorconfig'),
       this.destinationPath('.editorconfig')
+    );
+
+    // .gitignore
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
     );
 
     // tsconfig

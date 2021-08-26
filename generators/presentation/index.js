@@ -22,11 +22,11 @@ module.exports = class extends Generator {
         message: 'Css lib',
         choices: presentationData.cssLibs,
       },
-      {
-        type: 'confirm',
-        name: 'pwa',
-        message: 'Setup PWA ?',
-      },
+      // {
+      //   type: 'confirm',
+      //   name: 'pwa',
+      //   message: 'Setup PWA ?',
+      // },
     ]);
   }
 
@@ -65,6 +65,14 @@ module.exports = class extends Generator {
       this.destinationPath(`${this.rootPath}/next-env.d.ts`)
     );
 
+    // next config
+    this.fs.copyTpl(
+      this.templatePath('next.config.js'),
+      this.destinationPath('next.config.js'),
+      {
+        pwa: this.answers.pwa,
+      }
+    );
     // tsconfig
     this.fs.copy(
       this.templatePath('tsconfig.json'),
@@ -85,6 +93,7 @@ module.exports = class extends Generator {
 
   async installDeps() {
     const uiData = this._getUiData();
+    // const pwaDeps = this._getPWADependencies();
 
     await this.addDependencies([
       '@next/bundle-analyzer',
@@ -93,8 +102,17 @@ module.exports = class extends Generator {
       'react',
       'react-dom',
       ...uiData.dependencies,
+      // ...pwaDeps,
     ]);
     await this.addDevDependencies(['@types/react', ...uiData.devDependencies]);
+  }
+
+  _getPWADependencies() {
+    if (this.answers.pwa) {
+      return ['next-pwa', 'next-pwa/cache'];
+    }
+
+    return [];
   }
 
   _getUiData() {

@@ -19,11 +19,11 @@ module.exports = {
     return boxen(content, Object.assign({}, baseOptions, opts));
   },
   chalk: {
-    label(name) {
-      return chalk.bold[chankConfig.titleColor](`▸ ${name}:`);
+    label(name, color) {
+      return chalk[color || chankConfig.color](name);
     },
     title(title) {
-      return chalk.bold[chankConfig.color](title);
+      return chalk.bold[chankConfig.titleColor](title);
     },
     change(file) {
       return `${chalk.bold[chankConfig.color]('↻')} Updated ${chalk.bold[

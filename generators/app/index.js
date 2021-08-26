@@ -1,5 +1,4 @@
 const Generator = require('yeoman-generator');
-const terminal = require('../../source/utils/terminal');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -7,11 +6,10 @@ module.exports = class extends Generator {
   }
 
   initializing() {
+    this.composeWith(require.resolve('../logger'));
     this.composeWith(require.resolve('../core'));
     this.composeWith(require.resolve('../domain'));
     this.composeWith(require.resolve('../presentation'));
-
-    this._logStart();
   }
 
   async prompting() {
@@ -51,7 +49,7 @@ module.exports = class extends Generator {
       this.destinationPath('.editorconfig')
     );
 
-    // .gitignore
+    // // .gitignore
     this.fs.copy(
       this.templatePath('_gitignore'),
       this.destinationPath('.gitignore')
@@ -108,20 +106,6 @@ module.exports = class extends Generator {
     // env files
     this.fs.write('.env', '');
     this.fs.write('.env.example', '');
-  }
-
-  _logStart() {
-    const packageFile = this.fs.readJSON(require.resolve('../../package.json'));
-    const titleLines = [];
-
-    titleLines.push(
-      `${terminal.chalk.title('LOREM IPSUM')} @${packageFile.version}\n`
-    );
-    titleLines.push(
-      `${terminal.chalk.label('Node Version')} ${process.version}`
-    );
-
-    this.log(terminal.boxen(titleLines.join('\n')));
   }
 
   async installDeps() {

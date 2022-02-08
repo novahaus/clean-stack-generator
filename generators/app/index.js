@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator');
+const rootData = require('../../source/constants/root');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -26,6 +27,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'author',
         message: 'Author',
+        default: 'Novahaus',
       },
     ]);
 
@@ -112,30 +114,7 @@ module.exports = class extends Generator {
 
   async installDeps() {
     await this.addDependencies(['dotenv']);
-    await this.addDevDependencies([
-      '@commitlint/config-conventional',
-      '@types/faker',
-      '@types/jest',
-      '@typescript-eslint/eslint-plugin',
-      '@typescript-eslint/parser',
-      'cypress',
-      'env-cmd',
-      'eslint',
-      'eslint-config-prettier',
-      'eslint-config-standard-with-typescript',
-      'eslint-plugin-import',
-      'eslint-plugin-jest',
-      'eslint-plugin-node',
-      'eslint-plugin-promise',
-      'eslint-plugin-react',
-      'husky',
-      'jest',
-      'jest-mock-extended',
-      'lint-staged',
-      'prettier',
-      'standard-version',
-      'ts-jest',
-      'typescript',
-    ]);
+    await this.addDevDependencies(rootData.devDependencies);
+    await this.addDevDependencies(rootData.devDependenciesSpecifics);
   }
 };

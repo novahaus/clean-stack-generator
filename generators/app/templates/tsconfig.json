@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "incremental": false,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -15,6 +16,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": "./source",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["./*"]
     }

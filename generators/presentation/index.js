@@ -82,7 +82,7 @@ module.exports = class extends Generator {
 
   _writeHomeFile() {
     this.fs.copy(
-      this.templatePath('pages/index.tsx'),
+      this.templatePath(`pages/${this.answers.ui}/index.tsx`),
       this.destinationPath(`${this.rootPath}/pages/index.tsx`)
     );
   }

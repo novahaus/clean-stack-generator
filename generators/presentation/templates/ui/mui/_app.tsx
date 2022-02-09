@@ -1,10 +1,16 @@
 import type { AppProps } from 'next/app';
 import React, { Fragment, useEffect } from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider, CssBaseline } from '@material-ui/core';
-import { theme } from '@/presentation/theme';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme, createEmotionCache } from '@/presentation/theme';
+import { CacheProvider } from '@emotion/react';
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: AppProps): JSX.Element {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -15,12 +21,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <Fragment>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <StylesProvider injectFirst>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Component {...pageProps} />
-        </StylesProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </CacheProvider>
     </Fragment>
   );
 }

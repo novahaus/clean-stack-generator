@@ -10,7 +10,14 @@ module.exports = {
     {
       value: cssLibEnum.MUI,
       name: 'Material-UI',
-      dependencies: ['@material-ui/core', '@material-ui/icons'],
+      dependencies: [
+        '@emotion/cache',
+        '@emotion/react',
+        '@emotion/server',
+        '@emotion/styled',
+        '@mui/icons-material',
+        '@mui/material',
+      ],
       devDependencies: [],
     },
     {

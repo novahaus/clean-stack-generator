@@ -1,6 +1,6 @@
 {
   "name": "generator-mate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "files": [
     "generators"
@@ -13,6 +13,9 @@
     "react",
     "clean-architecture"
   ],
+  "scripts": {
+    "release": "standard-version"
+  },
   "author": "Leandro C. Silva",
   "license": "MIT",
   "dependencies": {
@@ -22,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "14.14.19",
-    "@types/yeoman-generator": "^5.2.2"
+    "@types/yeoman-generator": "^5.2.2",
+    "standard-version": "^9.3.2"
   }
 }

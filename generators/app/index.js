@@ -13,6 +13,7 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../presentation'));
     this.composeWith(require.resolve('../services'));
     this.composeWith(require.resolve('../infra'));
+    this.composeWith(require.resolve('../utils'));
   }
 
   async prompting() {

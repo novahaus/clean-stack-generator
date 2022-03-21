@@ -27,5 +27,10 @@
     "@types/node": "14.14.19",
     "@types/yeoman-generator": "^5.2.2",
     "standard-version": "^9.3.2"
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
   }
 }

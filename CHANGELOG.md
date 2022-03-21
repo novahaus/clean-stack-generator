@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/novahaus/clean-stack-generator/compare/v0.1.1...v0.2.1) (2022-03-21)
+
+
+### Features
+
+* add utils generator ([09aef84](https://github.com/novahaus/clean-stack-generator/commit/09aef846699924e118148292820168563d80f6b0))
+
 ### 0.1.1 (2022-03-18)
 
 

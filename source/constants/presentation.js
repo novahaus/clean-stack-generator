@@ -27,6 +27,7 @@ module.exports = {
       devDependencies: [
         'tailwindcss@latest',
         'postcss@latest',
+        'postcss-import',
         'autoprefixer@latest',
       ],
     },

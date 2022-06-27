@@ -1,9 +1,10 @@
 // tailwind.config.js
 module.exports = {
-  content: [
+  purge: [
     './source/presentation/pages/**/*.{js,ts,jsx,tsx}',
     './source/presentation/components/**/*.{js,ts,jsx,tsx}',
   ],
+  mode: 'jit',
   theme: {
     extend: {},
   },

@@ -7,6 +7,13 @@ module.exports = class extends Generator {
     super(args, opts);
   }
 
+  get rootPath() {
+    const { baseSourcePath } = rootData;
+    const { folder } = infraData;
+
+    return `${baseSourcePath}/${folder}`;
+  }
+
   async prompting() {
     this.answers = await this.prompt([
       {
@@ -23,20 +30,13 @@ module.exports = class extends Generator {
   }
 
   _writeInfraFiles() {
-    const { baseSourcePath } = rootData;
-
-    this.fs.write(`${baseSourcePath}/infra/index.ts`, '');
-
     this.answers.services.forEach((service) => {
       const serviceData = this._getServiceData(service);
-      const async = this.async();
 
-      this.fs.append(
-        `${baseSourcePath}/infra/index.ts`,
-        `export * from './${serviceData.fileName}'`
+      this.fs.copy(
+        this.templatePath(`${serviceData.fileName}.ts`),
+        this.destinationPath(`${this.rootPath}/${serviceData.fileName}.ts`)
       );
-
-      async();
     });
   }
 

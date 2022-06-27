@@ -4,13 +4,14 @@ const InfraEnum = {
 };
 
 module.exports = {
+  folder: 'infra',
   infraEnum: InfraEnum,
   infras: [
     {
       value: InfraEnum.AXIOS,
       name: 'Axios',
       dependencies: ['axios'],
-      devDependencies: [],
+      devDependencies: ['@types/axios'],
       fileName: 'HttpClientAxios',
     },
     {

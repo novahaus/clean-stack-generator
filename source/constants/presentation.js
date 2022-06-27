@@ -6,6 +6,8 @@ const cssLibEnum = {
 module.exports = {
   folder: 'presentation',
   cssLibEnum,
+  dependencies: ['next', 'react', 'react-dom'],
+  devDependencies: ['@types/react', '@next/bundle-analyzer', '@svgr/webpack'],
   cssLibs: [
     {
       value: cssLibEnum.MUI,

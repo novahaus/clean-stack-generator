@@ -1,6 +1,8 @@
 module.exports = {
   baseSourcePath: 'source',
+  dependencies: [],
   devDependencies: [
+    'dotenv',
     '@commitlint/config-conventional',
     'env-cmd',
     'standard-version',

@@ -114,7 +114,7 @@ module.exports = class extends Generator {
   }
 
   async installDeps() {
-    await this.addDependencies(['dotenv']);
+    await this.addDependencies(rootData.dependencies);
     await this.addDevDependencies(rootData.devDependencies);
     await this.addDevDependencies(rootData.devDependenciesSpecifics);
   }

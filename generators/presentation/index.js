@@ -96,15 +96,14 @@ module.exports = class extends Generator {
     // const pwaDeps = this._getPWADependencies();
 
     await this.addDependencies([
-      '@next/bundle-analyzer',
-      '@svgr/webpack',
-      'next',
-      'react',
-      'react-dom',
+      ...presentationData.dependencies,
       ...uiData.dependencies,
       // ...pwaDeps,
     ]);
-    await this.addDevDependencies(['@types/react', ...uiData.devDependencies]);
+    await this.addDevDependencies([
+      ...presentationData.devDependencies,
+      ...uiData.devDependencies,
+    ]);
   }
 
   _getPWADependencies() {

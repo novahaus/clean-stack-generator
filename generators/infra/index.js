@@ -30,14 +30,44 @@ module.exports = class extends Generator {
   }
 
   _writeInfraFiles() {
+    const { baseSourcePath } = rootData;
+
     this.answers.services.forEach((service) => {
       const serviceData = this._getServiceData(service);
 
+      // service
       this.fs.copy(
-        this.templatePath(`${serviceData.fileName}.ts`),
-        this.destinationPath(`${this.rootPath}/${serviceData.fileName}.ts`)
+        this.templatePath(`${serviceData.value}/services/**`),
+        this.destinationPath(`${baseSourcePath}/services`)
+      );
+
+      // infra
+      this.fs.copy(
+        this.templatePath(`${serviceData.value}/infra/**`),
+        this.destinationPath(this.rootPath)
       );
     });
+  }
+
+  async installDeps() {
+    const deps = this._getSelectedServicesDependencies();
+
+    await this.addDependencies(deps.dependencies);
+    await this.addDevDependencies(deps.devDependencies);
+  }
+
+  _getSelectedServicesDependencies() {
+    return this.answers.services.reduce(
+      (acc, service) => {
+        const { dependencies, devDependencies } = this._getServiceData(service);
+
+        acc.dependencies.push(...dependencies);
+        acc.devDependencies.push(...devDependencies);
+
+        return acc;
+      },
+      { dependencies: [], devDependencies: [] }
+    );
   }
 
   _getServiceData(serviceName) {

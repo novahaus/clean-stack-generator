@@ -1,6 +1,6 @@
 const InfraEnum = {
-  AXIOS: 'axios',
-  RECATPCHA: 'recaptcha',
+  HTTP_CLIENT: 'httpClient',
+  CAPTCHA: 'captcha',
 };
 
 module.exports = {
@@ -8,18 +8,18 @@ module.exports = {
   infraEnum: InfraEnum,
   infras: [
     {
-      value: InfraEnum.AXIOS,
-      name: 'Axios',
-      dependencies: ['axios'],
+      value: InfraEnum.HTTP_CLIENT,
+      name: 'HTTP Client',
+      dependencies: ['axios', 'js-cookie'],
       devDependencies: ['@types/axios'],
-      fileName: 'HttpClientAxios',
+      utils: ['QUERY_STRING'],
     },
     {
-      value: InfraEnum.RECATPCHA,
-      name: 'Recaptcha',
+      value: InfraEnum.CAPTCHA,
+      name: 'captcha',
       dependencies: [],
       devDependencies: ['@types/grecaptcha'],
-      fileName: 'RecaptchaToken',
+      utils: [],
     },
   ],
 };

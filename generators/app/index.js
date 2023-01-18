@@ -11,9 +11,7 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../core'));
     this.composeWith(require.resolve('../domain'));
     this.composeWith(require.resolve('../presentation'));
-    this.composeWith(require.resolve('../services'));
-    // this.composeWith(require.resolve('../infra'));
-    // this.composeWith(require.resolve('../utils'));
+    this.composeWith(require.resolve('../infra'));
   }
 
   async prompting() {

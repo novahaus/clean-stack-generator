@@ -1,4 +1,4 @@
-import { ITokenService } from "@/services";
+import { ITokenService } from "@/services/ITokenService";
 
 export class RecaptchaTokenService implements ITokenService {
   private static hasInited = false;

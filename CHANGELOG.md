@@ -2,12 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.2.1](https://github.com/novahaus/clean-stack-generator/compare/v0.1.1...v0.2.1) (2022-03-21)
-
+### 0.2.1 (2023-01-18)
 
 ### Features
 
-* add utils generator ([09aef84](https://github.com/novahaus/clean-stack-generator/commit/09aef846699924e118148292820168563d80f6b0))
+add utils generator ([09aef84](https://github.com/novahaus/clean-stack-generator/commit/09aef846699924e118148292820168563d80f6b0))
+
+### Bug Fixes
+
+* fix app and presentation dependencies ([f0a06ff](https://github.com/novahaus/clean-stack-generator/commit/f0a06fff29f28bc93611d2ca9bc19950c3e0699b))
+* fix critical vulnerability ([ee5cfc8](https://github.com/novahaus/clean-stack-generator/commit/ee5cfc89f31ec58d9543da3378a7ad0f6b600e56))
+* fix eslintrc configuration file ([6c3dfc7](https://github.com/novahaus/clean-stack-generator/commit/6c3dfc74a45c07a7474ebcfbbbc2edbeec6adf23))
+* fix presentation generator ([61ec081](https://github.com/novahaus/clean-stack-generator/commit/61ec0814acbeaad28ecd7bfe216298ab2e6ebc3f))
+* fix presentation tailwind files ([4817bff](https://github.com/novahaus/clean-stack-generator/commit/4817bff2127e634c01c65480037a178c7fa52954))
+* fix root dev dependencies ([a9b7f70](https://github.com/novahaus/clean-stack-generator/commit/a9b7f700ceaef2e2c0122de537abb6b538ff0e3a))
+* Fixes eslint configuration ([f7aab91](https://github.com/novahaus/clean-stack-generator/commit/f7aab91186b8f0af0806800edf7b0f3875b5b032)), closes [#2](https://github.com/novahaus/clean-stack-generator/issues/2)
 
 ### 0.1.1 (2022-03-18)
 

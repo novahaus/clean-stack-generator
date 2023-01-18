@@ -1,3 +1,5 @@
+const { enum: utilsEnum } = require('./utils');
+
 const InfraEnum = {
   HTTP_CLIENT: 'httpClient',
   CAPTCHA: 'captcha',
@@ -12,7 +14,7 @@ module.exports = {
       name: 'HTTP Client',
       dependencies: ['axios', 'js-cookie'],
       devDependencies: ['@types/axios'],
-      utils: ['QUERY_STRING'],
+      utils: [utilsEnum.QUERY_STRING],
     },
     {
       value: InfraEnum.CAPTCHA,

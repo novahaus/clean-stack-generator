@@ -1,6 +1,7 @@
 const Generator = require('yeoman-generator');
 const rootData = require('../../source/constants/root');
 const infraData = require('../../source/constants/infra');
+const utilsData = require('../../source/constants/utils');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -23,6 +24,14 @@ module.exports = class extends Generator {
         choices: infraData.infras,
       },
     ]);
+
+    utilsData.usedUtils.push(
+      ...this.answers.services
+        .map((service) => this._getServiceData(service))
+        .filter((serviceData) => serviceData.utils.length)
+        .map((serviceData) => serviceData.utils)
+        .flat()
+    );
   }
 
   writing() {

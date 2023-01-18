@@ -1,6 +1,6 @@
 // tailwind.config.js
 module.exports = {
-  purge: [
+  content: [
     './source/presentation/pages/**/*.{js,ts,jsx,tsx}',
     './source/presentation/components/**/*.{js,ts,jsx,tsx}',
   ],

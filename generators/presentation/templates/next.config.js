@@ -9,10 +9,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const config = {
   trailingSlash: true,
-  future: {
-    webpack5: true,
-  },
-
   <% if (pwa) { %>
     pwa: {
       dest: "public",
@@ -20,7 +16,6 @@ const config = {
       disable: process.env.NODE_ENV === "development",
     },
   <% } %>
-
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,

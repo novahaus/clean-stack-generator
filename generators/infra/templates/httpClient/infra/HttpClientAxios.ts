@@ -7,9 +7,11 @@ const { NEXT_PUBLIC_API_URL, NEXT_PUBLIC_COOKIE_NAME } = process.env
 
 const client = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,
-  paramsSerializer: createQueryString,
+  paramsSerializer: {
+    serialize: createQueryString,
+  },
   timeout: 7200000,
-})
+});
 
 client.interceptors.request.use((config: AxiosRequestConfig) => {
   const token: string | undefined = cookies.get(NEXT_PUBLIC_COOKIE_NAME as string);

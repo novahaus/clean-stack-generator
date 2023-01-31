@@ -1,4 +1,4 @@
-import { HttpMethod } from "./HttpMethod";
+import { IHttpClientRequestParams } from "./IHttpClientRequestParams";
 import { IHttpResponse } from "./IHttpResponse";
 
 export interface IHttpClient {
@@ -8,11 +8,5 @@ export interface IHttpClient {
     params,
     payload,
     baseURL,
-  }: {
-    url: string;
-    method: HttpMethod;
-    params?: Params;
-    payload?: Payload;
-    baseURL?: string;
-  }) => Promise<IHttpResponse<Response>>;
+  }: IHttpClientRequestParams<Payload, Params>) => Promise<IHttpResponse<Response>>;
 }

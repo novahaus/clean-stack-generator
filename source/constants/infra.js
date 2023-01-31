@@ -13,7 +13,6 @@ module.exports = {
       value: InfraEnum.HTTP_CLIENT,
       name: 'HTTP Client',
       dependencies: ['axios', 'js-cookie'],
-      devDependencies: ['@types/axios'],
       utils: [utilsEnum.QUERY_STRING],
     },
     {

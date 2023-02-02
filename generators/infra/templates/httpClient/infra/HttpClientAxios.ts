@@ -1,6 +1,6 @@
 import cookies from "js-cookie";
 import axios, { InternalAxiosRequestConfig } from "axios";
-import { IHttpClient, HttpMethod, IHttpResponse } from "@/services/http";
+import { IHttpClient, IHttpResponse, IHttpClientRequestParams } from "@/services/http";
 import { createQueryString } from "@/utils/queryString";
 
 const { NEXT_PUBLIC_API_URL, NEXT_PUBLIC_COOKIE_NAME } = process.env;
@@ -25,12 +25,33 @@ client.interceptors.request.use(
 );
 
 export class HttpClientAxios implements IHttpClient {
-  async request<T, R>(
-    url: string,
-    method: HttpMethod,
-    params: T
-  ): Promise<IHttpResponse<R>> {
-    const response = await client({ url, method, params });
+  async request<Response, Payload = undefined, Params = undefined>({
+    url,
+    method,
+    params,
+    payload,
+    baseURL,
+  }: IHttpClientRequestParams<Payload, Params>): Promise<
+    IHttpResponse<Response>
+  > {
+    const sanitizedParams = 
+      !!params && typeof params == "object" 
+        ? Object.fromEntries(
+            Object.entries(params).filter(([_, v]) => {
+              if (typeof v === "string") return v.length > 0;
+
+              return true;
+            })
+          )
+        : undefined;
+
+    const response = await client.request({
+      url,
+      method,
+      params: sanitizedParams,
+      data: payload,
+      baseURL
+    });
 
     return await Promise.resolve({
       statusCode: response.status,

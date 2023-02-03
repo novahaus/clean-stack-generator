@@ -24,13 +24,11 @@ interface HttpResponseError {
 function formatProperty(property: string, fieldMap: FieldMap): string {
   const splittedProperty = property.split(".");
 
-  if (splittedProperty.length >= 3) {
-    return `${fieldMap[splittedProperty[0]]}.${splittedProperty[1]}.${
-      fieldMap[splittedProperty[2]]
-    }`;
-  } else {
-    return fieldMap[splittedProperty[0]];
-  }
+  if (splittedProperty.length < 2) return fieldMap[splittedProperty[0]];
+
+  return `${fieldMap[splittedProperty[0]]}.${splittedProperty[1]}.${
+    fieldMap[splittedProperty[2]]
+  }`;
 }
 
 export function generateHttpErrorResponse(

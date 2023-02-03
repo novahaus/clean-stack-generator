@@ -24,6 +24,18 @@ client.interceptors.request.use(
   }
 );
 
+function sanitizeParams<Params>(params: Params): Record<string, string> | undefined {
+  return !!params && typeof params == "object" 
+    ? Object.fromEntries(
+        Object.entries(params).filter(([_, v]) => {
+          if (typeof v === "string") return v.length > 0;
+
+          return true;
+        })
+      )
+    : undefined;
+}
+
 export class HttpClientAxios implements IHttpClient {
   async request<Response, Payload = undefined, Params = undefined>({
     url,
@@ -34,16 +46,7 @@ export class HttpClientAxios implements IHttpClient {
   }: IHttpClientRequestParams<Payload, Params>): Promise<
     IHttpResponse<Response>
   > {
-    const sanitizedParams = 
-      !!params && typeof params == "object" 
-        ? Object.fromEntries(
-            Object.entries(params).filter(([_, v]) => {
-              if (typeof v === "string") return v.length > 0;
-
-              return true;
-            })
-          )
-        : undefined;
+    const sanitizedParams = sanitizeParams<Params>(params);
 
     const response = await client.request({
       url,

@@ -6,8 +6,10 @@ import {
   UnauthorizedError,
   NotAcceptableError,
   ValidationError,
-} from "@/js/core/Errors";
+  IValidationError,
+} from "@/core/Errors";
 import { AxiosError } from "axios";
+import { HttpStatusCode } from "@/services/http/HttpStatusCode";
 
 interface FieldMap {
   [key: string]: string;
@@ -29,6 +31,20 @@ function formatProperty(property: string, fieldMap: FieldMap): string {
   return `${fieldMap[splittedProperty[0]]}.${splittedProperty[1]}.${
     fieldMap[splittedProperty[2]]
   }`;
+}
+
+function formatValidationError(
+  errors: Record<string, string>,
+  fieldMap?: FieldMap
+): IValidationError[] {
+  return Object.entries(errors).map((err) => {
+    const parameter = fieldMap ? formatProperty(err[0], fieldMap) : err[0];
+
+    return {
+      parameter,
+      error: err[1],
+    };
+  });
 }
 
 export function generateHttpErrorResponse(
@@ -62,18 +78,9 @@ export function generateHttpErrorResponse(
       status === HttpStatusCode.UNPROCESSABLE_ENTITY &&
       data.errors !== undefined
     ) {
-      return new ValidationError(
-        Object.entries(data.errors).map((err) => {
-          const parameter = fieldMap
-            ? formatProperty(err[0], fieldMap)
-            : err[0];
+      const formattedErrors = formatValidationError(data.errors, fieldMap);
 
-          return {
-            parameter,
-            error: err[1],
-          };
-        })
-      );
+      return new ValidationError(formattedErrors);
     }
   }
 

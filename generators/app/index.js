@@ -12,6 +12,7 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../domain'));
     this.composeWith(require.resolve('../presentation'));
     this.composeWith(require.resolve('../infra'));
+    this.composeWith(require.resolve('../data'));
     this.composeWith(require.resolve('../utils'));
   }
 

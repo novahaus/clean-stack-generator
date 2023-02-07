@@ -32,6 +32,8 @@ module.exports = class extends Generator {
         .map((serviceData) => serviceData.utils)
         .flat()
     );
+
+    infraData.setUsedServices(this.answers.services)
   }
 
   writing() {

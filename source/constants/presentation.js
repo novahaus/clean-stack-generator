@@ -7,7 +7,7 @@ module.exports = {
   folder: 'presentation',
   cssLibEnum,
   dependencies: ['next', 'react', 'react-dom'],
-  devDependencies: ['@types/react', '@next/bundle-analyzer', '@svgr/webpack'],
+  devDependencies: ['@types/react', '@next/bundle-analyzer', '@svgr/webpack', '@next/eslint-plugin-next'],
   cssLibs: [
     {
       value: cssLibEnum.MUI,

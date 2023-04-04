@@ -3,7 +3,8 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 import { IHttpClient, IHttpResponse, IHttpClientRequestParams } from "@/services/http";
 import { createQueryString } from "@/utils/queryString";
 
-const { NEXT_PUBLIC_API_URL, NEXT_PUBLIC_COOKIE_NAME } = process.env;
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+const NEXT_PUBLIC_COOKIE_NAME = process.env.NEXT_PUBLIC_COOKIE_NAME;
 
 const client = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,

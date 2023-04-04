@@ -12,8 +12,6 @@ module.exports = {
     "plugin:@next/next/recommended",
     "plugin:react/recommended",
     "standard-with-typescript",
-    "plugin:jest/recommended",
-    "plugin:jest/style",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -25,7 +23,7 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
   },
-  plugins: ["react", "@typescript-eslint", "jest"],
+  plugins: ["react", "@typescript-eslint"],
   rules: {
     // We will use TypeScript's types for component props instead
     "react/prop-types": "off",

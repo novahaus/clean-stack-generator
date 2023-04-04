@@ -101,10 +101,10 @@ module.exports = class extends Generator {
       this.destinationPath('cypress.json')
     );
 
-    // jest
+    // vite
     this.fs.copy(
-      this.templatePath('jest.config.js'),
-      this.destinationPath('jest.config.js')
+      this.templatePath('vite.config.ts'),
+      this.destinationPath('vite.config.ts')
     );
 
     // env files

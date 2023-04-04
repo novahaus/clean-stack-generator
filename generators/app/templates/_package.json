@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --no-cache --runInBand --bail",
-    "test:watch": "npm test -- --watch",
+    "test": "vitest",
+    "test:bench": "vitest bench",
+    "test:ui": "vitest --ui",
     "lint": "eslint source --fix",
     "prepare": "husky install",
     "release": "standard-version",

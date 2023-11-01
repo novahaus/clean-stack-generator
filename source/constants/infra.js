@@ -5,9 +5,15 @@ const InfraEnum = {
   CAPTCHA: 'captcha',
 };
 
+const usedServices = [];
+
 module.exports = {
   folder: 'infra',
   infraEnum: InfraEnum,
+  usedServices,
+  setUsedServices: (services) => {
+    usedServices.push(...services);
+  },
   infras: [
     {
       value: InfraEnum.HTTP_CLIENT,

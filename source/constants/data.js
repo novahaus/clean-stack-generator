@@ -1,22 +1,40 @@
 const { infraEnum } = require("./infra");
 
+const dataEnum = {
+  REMOTE: "remote",
+  LOCAL: "local",
+  MOCK: "mock",
+};
+
+const chosenDataSources = [];
+
 module.exports = {
-  folder: 'data',
+  folder: "data",
+  chosenDataSources,
+  setUsedDataSources: (usedDataSources) => {
+    chosenDataSources.push(...usedDataSources);
+  },
   dataSources: [
     {
-      value: "remote",
+      value: {
+        data: "remote",
+        serviceDependency: [infraEnum.HTTP_CLIENT],
+      },
       name: "Remote",
-      serviceDependency: [infraEnum.HTTP_CLIENT]
     },
     {
-      value: "local",
+      value: {
+        data: "local",
+        serviceDependency: [],
+      },
       name: "Local",
-      serviceDependency: []
     },
     {
-      value: "mock",
+      value: {
+        data: "mock",
+        serviceDependency: [],
+      },
       name: "Mock",
-      serviceDependency: []
     },
-  ]
-}
+  ],
+};

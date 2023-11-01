@@ -28,31 +28,31 @@ module.exports = class extends Generator {
   _writeDataFiles() {
     const { baseSourcePath } = rootData;
 
-    this.answers.dataSources.forEach((service) => {
-      this.fs.write(`${baseSourcePath}/data/${service}/models/.gitkeep`, '');
+    this.answers.dataSources.forEach(({data: source}) => {
+      this.fs.write(`${baseSourcePath}/data/${source}/models/.gitkeep`, '');
 
       try {
         this.fs.copy(
-          this.templatePath(`${service}/modules/**`),
-          this.destinationPath(`${baseSourcePath}/data/${service}/modules`)
+          this.templatePath(`${source}/modules/**`),
+          this.destinationPath(`${baseSourcePath}/data/${source}/modules`)
         );
       } catch (error) {
-        this.fs.write(`${baseSourcePath}/data/${service}/modules/.gitkeep`, '');
+        this.fs.write(`${baseSourcePath}/data/${source}/modules/.gitkeep`, '');
       }
     });
   }
 
   async prompting() {
-    const choices = this._filterAvailableDataSources(dataLayerData.dataSources);
-
     this.answers = await this.prompt([
     {
         type: "checkbox",
         name: "dataSources",
         message: "Data sources",
-        choices,
+        choices: dataLayerData.dataSources,
       },
     ]);
+
+    dataLayerData.setUsedDataSources(this.answers.dataSources);
   }
 
   writing() {

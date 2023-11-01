@@ -1,7 +1,9 @@
-const Generator = require('yeoman-generator');
-const rootData = require('../../source/constants/root');
-const infraData = require('../../source/constants/infra');
-const utilsData = require('../../source/constants/utils');
+const Generator = require("yeoman-generator");
+
+const rootData = require("../../source/constants/root");
+const infraData = require("../../source/constants/infra");
+const utilsData = require("../../source/constants/utils");
+const { chosenDataSources } = require("../../source/constants/data");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -16,14 +18,23 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
+    const autoIncludedServices = this._getChosenServices();
+
     this.answers = await this.prompt([
       {
-        type: 'checkbox',
-        name: 'services',
-        message: 'Services',
-        choices: infraData.infras,
+        type: "checkbox",
+        name: "services",
+        message: "Services",
+        choices: infraData.infras.map((choice) => ({
+          ...choice,
+          disabled:
+            autoIncludedServices.includes(choice.value) &&
+            `Automatically added.`,
+        })),
       },
     ]);
+
+    this.answers.services.push(...autoIncludedServices);
 
     utilsData.usedUtils.push(
       ...this.answers.services
@@ -33,7 +44,7 @@ module.exports = class extends Generator {
         .flat()
     );
 
-    infraData.setUsedServices(this.answers.services)
+    infraData.setUsedServices(this.answers.services);
   }
 
   writing() {
@@ -83,5 +94,15 @@ module.exports = class extends Generator {
 
   _getServiceData(serviceName) {
     return infraData.infras.find((service) => service.value === serviceName);
+  }
+
+  _getChosenServices() {
+    return infraData.infras
+      .filter((service) =>
+        chosenDataSources.some((source) =>
+          source.serviceDependency.includes(service.value)
+        )
+      )
+      .map((source) => source.value);
   }
 };
